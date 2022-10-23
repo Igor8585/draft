@@ -1,21 +1,37 @@
 ﻿using System;
 
-class MainClass
+class Rectangle
 {
-	public static void Main(string[] args)
-	{
-		Console.WriteLine(Factorial(20));
-	}
-	static int Factorial(int x)
-	{
-		if (x == 0)
-		{
-			return 1;
-		}
-		else
-		{
-			return x * Factorial(x - 1);
-		}
-	}
+	public int a,b;
 
+    Rectangle()
+    {
+        a = 6;
+        b = 4;
+    }
+
+    Rectangle(int s)
+    {
+        a = s;
+        b = s;
+    }
+
+    Rectangle(int first, int second)
+    {
+        a = first;
+        b = second;
+    }
+
+    static int Square(int a, int b)
+    {
+        int s = a * b;
+
+        return s;
+    }
+
+
+    static void Main()
+    {
+
+    }
 }
