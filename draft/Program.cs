@@ -1,37 +1,37 @@
 ﻿using System;
 
-class Rectangle
+class Company
 {
-	public int a,b;
+	public string Type;
+	public string Name;
+}
 
-    Rectangle()
-    {
-        a = 6;
-        b = 4;
-    }
+class Department
+{
+	public Company Company;
+	public City City;
+}
 
-    Rectangle(int s)
-    {
-        a = s;
-        b = s;
-    }
+class City
+{
+	public string Name;
+}
 
-    Rectangle(int first, int second)
-    {
-        a = first;
-        b = second;
-    }
+class Program
+{
+	static void Main(string[] args)
+	{
+		var department = GetCurrentDepartment();
+	}
 
-    static int Square(int a, int b)
-    {
-        int s = a * b;
+	static Department GetCurrentDepartment()
+	{
+		// logic
+		Department department = new Department();
 
-        return s;
-    }
-
-
-    static void Main()
-    {
-
-    }
+		if(department?.Company?.Type == "Банк" && department?.Company?.Name == "Санкт-Петербург")
+        {
+			Console.WriteLine("У банка {0} есть отделение в Санкт-Петербурге", department?.Company?.Name ?? "Неизвестная компания");
+        }			
+	}
 }
