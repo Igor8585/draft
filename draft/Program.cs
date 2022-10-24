@@ -1,37 +1,66 @@
 ﻿using System;
 
-class Company
+class User
 {
-	public string Type;
-	public string Name;
-}
+	private int age;
+	private string login;
+	private string mail;
 
-class Department
-{
-	public Company Company;
-	public City City;
-}
-
-class City
-{
-	public string Name;
-}
-
-class Program
-{
-	static void Main(string[] args)
+	public int Age
 	{
-		var department = GetCurrentDepartment();
+		get
+		{
+			return age;
+		}
+
+		set
+		{
+			if (value < 18)
+			{
+				Console.WriteLine("Возраст должен быть не меньше 18");
+			}
+			else
+			{
+				age = value;
+			}
+		}
 	}
 
-	static Department GetCurrentDepartment()
-	{
-		// logic
-		Department department = new Department();
-
-		if(department?.Company?.Type == "Банк" && department?.Company?.Name == "Санкт-Петербург")
+	public string Login
+    {
+        get
         {
-			Console.WriteLine("У банка {0} есть отделение в Санкт-Петербурге", department?.Company?.Name ?? "Неизвестная компания");
-        }			
+			return login;
+        }
+        set
+        {
+			if(value.Length < 3)
+            {
+				Console.WriteLine("Введите более 3 символов");
+			}
+            else
+            {
+				login = value;
+            }
+        }
+    }
+
+	public string Mail
+	{
+		get
+		{
+			return mail;
+		}
+		set
+		{
+			if (!value.Contains("@"))
+			{
+				Console.WriteLine("Неверно введена почта");
+			}
+            else
+            {
+				mail = value;
+            }
+		}
 	}
 }
