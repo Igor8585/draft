@@ -1,66 +1,20 @@
 ﻿using System;
 
-class User
+class Employee
 {
-	private int age;
-	private string login;
-	private string mail;
+    public string Name;
+    public int Age;
+    public int Salary;
+}
 
-	public int Age
-	{
-		get
-		{
-			return age;
-		}
+//Класс ProjectManager должен содержать строковое поле ProjectName, а класс Developer — строковое поле ProgrammingLanguage.
 
-		set
-		{
-			if (value < 18)
-			{
-				Console.WriteLine("Возраст должен быть не меньше 18");
-			}
-			else
-			{
-				age = value;
-			}
-		}
-	}
+class ProjectManager : Employee
+{
+    public string ProjectName;
+}
 
-	public string Login
-    {
-        get
-        {
-			return login;
-        }
-        set
-        {
-			if(value.Length < 3)
-            {
-				Console.WriteLine("Введите более 3 символов");
-			}
-            else
-            {
-				login = value;
-            }
-        }
-    }
-
-	public string Mail
-	{
-		get
-		{
-			return mail;
-		}
-		set
-		{
-			if (!value.Contains("@"))
-			{
-				Console.WriteLine("Неверно введена почта");
-			}
-            else
-            {
-				mail = value;
-            }
-		}
-	}
+class Developer : Employee
+{
+    public string ProgrammingLanguage;
 }
