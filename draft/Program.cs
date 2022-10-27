@@ -1,20 +1,19 @@
 ﻿using System;
 
-class Employee
-{
-    public string Name;
-    public int Age;
-    public int Salary;
-}
 
-//Класс ProjectManager должен содержать строковое поле ProjectName, а класс Developer — строковое поле ProgrammingLanguage.
-
-class ProjectManager : Employee
+//Реализуйте конструктор, заполняющий поля для следующего класса:
+class Obj
 {
-    public string ProjectName;
-}
+	private string name;
+	private string owner;
+	private int length;
+	private int count;
 
-class Developer : Employee
-{
-    public string ProgrammingLanguage;
+	public Obj(string name, string ownerName, int objLength, int count)
+	{
+		this.name = name;
+		owner = ownerName;
+		length = objLength;
+		this.count = count;
+	}
 }
