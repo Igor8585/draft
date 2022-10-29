@@ -1,21 +1,29 @@
 ﻿using System;
 
 
-//Реализуйте в классе BaseClass виртуальный метод Display с типом void и без параметров, который будет выводить сообщение "Метод класса BaseClass" в консоль,
-//а затем переопределите его в DerivedClass, чтобы он выводил сообщение "Метод класса DerivedClass".
+//Измените свойство Counter так, чтобы его можно было переопределить в классе DerivedClass. Переопределите данное свойство, ограничив занесения в него чисел меньше 0.
 
 class BaseClass
 {
-    public virtual void Display()
+    public virtual int Counter
     {
-        Console.WriteLine("Метод класса BaseClass");
+        get;
+        set;
     }
 }
 
 class DerivedClass : BaseClass
 {
-    public override void Display()
+    public int counter;
+    public override int Counter 
     {
-        Console.WriteLine("Метод класса DerivedClass");
+        get { return counter; }
+        set
+        {
+            if (value > 0)
+            {
+                counter = value;
+            }
+        }
     }
 }
