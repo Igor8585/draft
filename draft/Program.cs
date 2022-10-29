@@ -48,6 +48,12 @@ class Program
 {
     public static void Main()
     {
+        D d = new D();
+        E e = new E();
 
+        d.Display(); //D
+        ((A)e).Display(); //C
+        ((B)d).Display(); //B
+        ((A)d).Display(); //A
     }
 }
