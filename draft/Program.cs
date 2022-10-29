@@ -1,41 +1,46 @@
 ﻿using System;
 
+//Создайте схему классов A, B, C, D и E таким образом, чтобы B наследовался от A, С от A, D от B и E от C. А также:
+//
+//Добавьте в класс A виртуальный метод Display (void тип, без параметров), который будет выводить в консоль "A".
+//В классе B скройте этот метод и сделайте так, чтобы в консоль выводилось "B".
+//Для класса C переопределите метод Display, чтобы в консоли было "C".
+//Для D снова скройте метод.
+//В классе E также скройте метод.
 
-//Вернитесь к заданию 7.2.3 и дополните его код так, чтобы для вызова следующего следующего кода в консоль выводилось 2 сообщения 
-//    (сначала "Метод класса BaseClass", а затем "Метод класса DerivedClass"):
-class BaseClass
+class A
 {
-    public virtual int Counter
-    {
-        get;
-        set;
-    }
-
     public virtual void Display()
     {
-        Console.WriteLine("Метод класса BaseClass");
+        Console.WriteLine("A");
+    } 
+}
+class B : A
+{
+   public new void Display()
+    {
+        Console.WriteLine("B");
     }
 }
-
-class DerivedClass : BaseClass
+class C : A
 {
-    public int counter;
-    public override int Counter 
-    {
-        get { return counter; }
-        set
-        {
-            if (value > 0)
-            {
-                counter = value;
-            }
-        }
-    }
-
     public override void Display()
     {
-        base.Display();
-        Console.WriteLine("Метод класса DerivedClass");
+        Console.WriteLine("C");
+    }
+}
+class D : B
+{
+    public new void Display()
+    {
+        Console.WriteLine("D");
+    }
+}
+class E : C
+{
+    public new void Display()
+    {
+        Console.WriteLine("E");
     }
 }
 
@@ -43,7 +48,6 @@ class Program
 {
     public static void Main()
     {
-        DerivedClass obj = new DerivedClass();
-        obj.Display();
+
     }
 }
