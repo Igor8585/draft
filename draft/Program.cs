@@ -1,36 +1,21 @@
 ﻿using System;
 
 
-
-//Для класса DerivedClass создайте 2 конструктора: один, принимающий 2 параметра — name и description, второй — принимающий 3 параметра name, description и counter.
-//Старайтесь написать оптимальный вариант с учетом полученных знаний.
+//Реализуйте в классе BaseClass виртуальный метод Display с типом void и без параметров, который будет выводить сообщение "Метод класса BaseClass" в консоль,
+//а затем переопределите его в DerivedClass, чтобы он выводил сообщение "Метод класса DerivedClass".
 
 class BaseClass
 {
-    protected string Name;
-
-    public BaseClass(string name)
+    public virtual void Display()
     {
-        Name = name;
+        Console.WriteLine("Метод класса BaseClass");
     }
 }
 
 class DerivedClass : BaseClass
 {
-    //private static string name;
-
-    public string Description;
-
-    public int Counter;
-
-    public DerivedClass(string name, string description) : base(name)
+    public override void Display()
     {
-        Description = description;
-    }
-
-    public DerivedClass(string name, string description, int counter) : this(name, description)
-    {
-        //Description = description;
-        Counter = counter;
+        Console.WriteLine("Метод класса DerivedClass");
     }
 }
