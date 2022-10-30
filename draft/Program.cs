@@ -1,41 +1,47 @@
 ﻿using System;
 
-//Создайте класс Helper и определите в нем статический метод Swap типа void, который принимает 2 переменные типа int и меняет их значения местами.
+//Для класса int создайте 2 метода расширения: GetNegative() и GetPositive().
+//
+//Метод GetNegative должен возвращать отрицательное значение переменной (если оно положительно), либо саму переменную (если оно отрицательно или равно 0).
+//
+//Метод GetPositive должен, наоборот, возвращать положительное значение (если оно отрицательно), либо саму переменную (если оно положительно или равно 0).
 //
 //Иными словами, для вашего метода должен будет корректно выполняться следующий код:
-//int num1 = 3;
-//int num2 = 58;
 //
-//Helper.Swap(
-///*передача num1 и num2 в метод*/
-//);
+//int num1 = 7;
+//int num2 = -13;
+//int num3 = 0;
 //
-//Console.WriteLine(num1); //58
-//Console.WriteLine(num2); //3
+//Console.WriteLine(num1.GetNegative()); //-7
+//Console.WriteLine(num1.GetPositive()); //7
+//Console.WriteLine(num2.GetNegative()); //-13
+//Console.WriteLine(num2.GetPositive()); //13
+//Console.WriteLine(num3.GetNegative()); //0
+//Console.WriteLine(num3.GetPositive()); //0
 
-class Helper
+static class IntExtensions
 {
-    public static void Swap(ref int a, ref int b)
+    public static int GetNegative(this int number)
     {
-        int temp;
-
-        temp = a;
-        a = b;
-        b = temp;
-
-        Console.WriteLine(a);
-        Console.WriteLine(b);
+        if (number > 0)
+        {
+            return -number;
+        }
+        else
+        {
+            return number;
+        }
     }
-}
-
-class Program
-{
-    public static void Main()
+    public static int GetPositive(this int number)
     {
-        int a = 3;
-        int b = 58;
-
-        Helper.Swap(ref a, ref b);
+        if (number < 0)
+        {
+            return -number;
+        }
+        else
+        {
+            return number;
+        }
     }
 }
 
