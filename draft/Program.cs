@@ -1,24 +1,25 @@
 ﻿using System;
 
-//Для класса Obj перегрузите операторы + и -, чтобы результатом работы оператора был новый экземпляр класса Obj, а операции производились над полем Value.
+//Для следующего класса напишите индексатор, для типа параметра используйте int:
 
-class Obj
+class IndexingClass
 {
-    public int Value;
+    private int[] array;
 
-    public static Obj operator + (Obj value1, Obj value2)
+    public IndexingClass(int[] array)
     {
-        return new Obj()
-        {
-            Value = value1.Value + value2.Value
-        };
+        this.array = array;
     }
 
-    public static Obj operator - (Obj value1, Obj value2)
+    public int this[int index]
     {
-        return new Obj()
+        get
         {
-            Value = value1.Value - value2.Value
-        };
+            return array[index];
+        }
+        set
+        {
+            array[index] = value;
+        }
     }
 }
