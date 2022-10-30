@@ -1,25 +1,33 @@
 ﻿using System;
 
-//Для следующего класса напишите индексатор, для типа параметра используйте int:
+//Создайте классы для следующих объектов компьютера: процессор(Processor), материнская карта(MotherBoard), видеокарта(GraphicCard).Унаследуйте их от класса ComputerPart.
+//Добавьте в класс ComputerPart абстрактный метод Work без параметров и с типом void.
 
-class IndexingClass
+abstract class ComputerPart
 {
-    private int[] array;
+    public abstract void Work();
 
-    public IndexingClass(int[] array)
+}
+class Processor : ComputerPart
+{
+    public override void Work()
     {
-        this.array = array;
+       
     }
+}
 
-    public int this[int index]
+class MotherBoard : ComputerPart
+{
+    public override void Work()
     {
-        get
-        {
-            return array[index];
-        }
-        set
-        {
-            array[index] = value;
-        }
+
+    }
+}
+
+class GraphicCard : ComputerPart
+{
+    public override void Work()
+    {
+
     }
 }
