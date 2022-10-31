@@ -1,14 +1,21 @@
 ﻿using System;
 
-//Реализуйте класс-обобщение Record, у которого будут два универсальных параметра: один — для идентификатора записи (Id), другой — для значения записи (Value). 
-//    Также в классе реализуйте поле Date типа DateTime.
+//Добавьте к схеме классов автомобиля следующие классы частей автомобиля: Battery, Differential, Wheel.
+//Также добавьте в класс Car виртуальный обобщённый метод без реализации — ChangePart, который будет принимать один параметр — newPart универсального типа.
 
-class Record<T1, T2>
+class ElectricEngine { }
+class GasEngine { }
+class Battery { }
+class Differential { }
+class Wheel { }
+class Car<T>
 {
-    public T1 id;
+    public T Engine;
+    public virtual void ChangePart<T1>(T1 newPart)
+    {
+    }
 
-    public T2 Value;
-
-    public DateTime Date;
+    public static void Main()
+    {
+    }
 }
-
