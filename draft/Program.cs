@@ -1,17 +1,21 @@
 ﻿using System;
 
-//Добавьте к схеме классов автомобиля следующие классы частей автомобиля: Battery, Differential, Wheel.
-//Также добавьте в класс Car виртуальный обобщённый метод без реализации — ChangePart, который будет принимать один параметр — newPart универсального типа.
+//Установите ограничения на универсальные типы в классе Car. Такие, чтобы поле Engine могло принимать тип ElectricEngine и GasEngine,
+//а параметр newPart метода ChangePart мог бы принимать только типы частей машины (Battery, Differential, Wheel).
+//
+//Для этого вам может понадобиться использовать один из ранее изученных принципов ООП.
 
-class ElectricEngine { }
-class GasEngine { }
-class Battery { }
-class Differential { }
-class Wheel { }
-class Car<T>
+class ElectricEngine : BaseEngine { }
+class GasEngine : BaseEngine { }
+class Battery : BaseChangePart { }
+class Differential : BaseChangePart { }
+class Wheel : BaseChangePart { }
+class BaseEngine { }
+class BaseChangePart { }
+class Car<TEngine> where TEngine : BaseEngine
 {
-    public T Engine;
-    public virtual void ChangePart<T1>(T1 newPart)
+    public TEngine Engine;
+    public virtual void ChangePart<TPart>(TPart newPart) where TPart : BaseChangePart
     {
     }
 
