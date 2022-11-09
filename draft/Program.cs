@@ -1,37 +1,39 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.IO;
 
-class InfoHdd
+
+namespace DirectoryManager
 {
-    public string NameDisk { get; }
-    public decimal DiskSpace { get; }
-    public decimal Total { get; }
-
-    public InfoHdd(string namedisk, decimal space, decimal total)
+    class Program
     {
-        NameDisk = namedisk;
-        DiskSpace = space;
-        Total = total;
-    }
-    
-}
+        public static void Main() 
+        {
 
-public class Folder
-{
-    public List<string> Files { get; set; } = new List<string>();
-}
+            try
+            {
+                DirectoryInfo dirInfo = new DirectoryInfo(@"D:\foto\");
 
-class Program
-{
-    public static void Main()
-    {
+                if (!dirInfo.Exists)
+                    dirInfo.Create();
 
-    }
+                dirInfo.CreateSubdirectory("NewFolder");
 
-    Dictionary<string, Folder> Folders = new Dictionary<string, Folder>();
+               // dirInfo = new DirectoryInfo(@"C:\\" /* Или С:\\ для Windows */ );
 
-    public void CreateFolder(string name)
-    {
-        Folders.Add(name, new Folder());
+               if (dirInfo.Exists)
+               {
+                   Console.WriteLine(dirInfo.GetDirectories().Length + dirInfo.GetFiles().Length);
+               }
+            }
+
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+        }
+
+
+
     }
 }
