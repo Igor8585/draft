@@ -11,12 +11,12 @@ namespace DirectoryManager
 
             try
             {
-                DirectoryInfo dirInfo = new DirectoryInfo(@"D:\foto\");
+                DirectoryInfo dirInfo = new DirectoryInfo(@"C:\Users\User\Desktop");
 
                 if (!dirInfo.Exists)
                     dirInfo.Create();
 
-                dirInfo.CreateSubdirectory("NewFolder");
+                dirInfo.CreateSubdirectory("testFolder");
 
                // dirInfo = new DirectoryInfo(@"C:\\" /* Или С:\\ для Windows */ );
 
@@ -24,6 +24,22 @@ namespace DirectoryManager
                {
                    Console.WriteLine(dirInfo.GetDirectories().Length + dirInfo.GetFiles().Length);
                }
+
+                Console.WriteLine("Удалить testFolder? да/нет");
+                string del = Console.ReadLine();
+
+                if(del == "да")
+                {
+                    // DirectoryInfo dirInfo = new DirectoryInfo("/Users/luft/SkillFactory");
+                    // string newPath = "/Users/luft/SkillFactoryNew";
+                    //
+                    // if (dirInfo.Exists && !Directory.Exists(newPath))
+                    //     dirInfo.MoveTo(newPath);
+                    string newPath = @"C:\$Recycle.Bin";
+
+                    if (dirInfo.Exists && !Directory.Exists(newPath))
+                         dirInfo.MoveTo(newPath);
+                }
             }
 
             catch (Exception e)
