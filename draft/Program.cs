@@ -2,54 +2,34 @@
 using System.IO;
 
 
-namespace DirectoryManager
+//Напишите программу, которая выводит свой собственный исходный код в консоль.
+
+class SourceCode
 {
-    class Program
+    public static void Main()
     {
-        public static void Main() 
+        string pathFile = @"C:\Users\User\source\repos\draft\draft\Program.cs";
+
+        if (!File.Exists(pathFile))
         {
+            string pathFile2 = @"C:\Users\User\source\repos\draft\draft\Program2.cs";
 
-            try
+            using (StreamWriter sw = File.CreateText(pathFile2))
             {
-                DirectoryInfo dirInfo = new DirectoryInfo(@"C:\Users\User\Desktop");
-
-                if (!dirInfo.Exists)
-                    dirInfo.Create();
-
-                dirInfo.CreateSubdirectory("testFolder");
-
-               // dirInfo = new DirectoryInfo(@"C:\\" /* Или С:\\ для Windows */ );
-
-               if (dirInfo.Exists)
-               {
-                   Console.WriteLine(dirInfo.GetDirectories().Length + dirInfo.GetFiles().Length);
-               }
-
-                Console.WriteLine("Удалить testFolder? да/нет");
-                string del = Console.ReadLine();
-
-                if(del == "да")
-                {
-                    // DirectoryInfo dirInfo = new DirectoryInfo("/Users/luft/SkillFactory");
-                    // string newPath = "/Users/luft/SkillFactoryNew";
-                    //
-                    // if (dirInfo.Exists && !Directory.Exists(newPath))
-                    //     dirInfo.MoveTo(newPath);
-                    string newPath = @"C:\$Recycle.Bin";
-
-                    if (dirInfo.Exists && !Directory.Exists(newPath))
-                         dirInfo.MoveTo(newPath);
-                }
+                sw.WriteLine("using System;");
+                sw.WriteLine("class SourceCode2");
+                sw.WriteLine("{}");
             }
-
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-
         }
 
+        using (StreamReader sr = File.OpenText(pathFile))
+        {
+            string str = "";
 
-
+            while ((str = sr.ReadLine()) != null)
+            {
+                Console.WriteLine(str);
+            }
+        }
     }
 }
