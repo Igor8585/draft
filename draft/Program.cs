@@ -2,17 +2,11 @@
 using System.IO;
 
 
-//По ссылке лежит бинарный файл. В нём записана дата создания и имя операционной системы, на которой он был создан (формат данных — строка).
+//Запишите в файл из предыдущего задания информацию о доступе к нему с вашей машины. 
 //
-//Скачайте файл и поместите его на рабочий стол.
+//Пример вывода, который должен получиться: 
 //
-//Напишите программу, которая считает из него данные и позволит вам ответить на следующие вопросы:
-//
-//1.Когда файл был создан?
-//
-//Формат ответа: DD.MM в hh:mm
-//
-//2. На какой операционной системе создан файл?
+//Файл изменен 02.11 14:53 на компьютере Windows 11
 
 class BinaryRead
 {
@@ -21,6 +15,17 @@ class BinaryRead
     static void Main()
     {
         ReadValues();
+        WriteValues();
+    }
+
+    static void WriteValues()
+    {
+        using (BinaryWriter Bw = new BinaryWriter(File.Open(settingsFileName, FileMode.Open)))
+        {
+            Bw.Write(@"Файл изменен 02.11 14:53 на компьютере Windows 11");
+            //Bw.Write(@"на компьютере Windows 11");
+        }
+
     }
 
     static void ReadValues()
@@ -29,7 +34,7 @@ class BinaryRead
         string StringValue;
         //int IntValue;
         //bool BooleanValue;
-
+    
         if (File.Exists(settingsFileName))
         {
             using (BinaryReader Br = new BinaryReader(File.Open(settingsFileName, FileMode.Open)))
@@ -39,7 +44,7 @@ class BinaryRead
                 //IntValue = Br.ReadInt32();
                 //BooleanValue = Br.ReadBoolean();
             }
-
+    
             Console.WriteLine("Из файла считано:");
             //Console.WriteLine("Дробь: " + FloatValue);
             Console.WriteLine("Строка: " + StringValue);
