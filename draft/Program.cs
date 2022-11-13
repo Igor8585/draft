@@ -2,37 +2,49 @@
 using System.IO;
 
 
-//Сделайте так, чтобы ваша программа из задания 8.3.1 при каждом запуске добавляла в свой исходный код комментарий о времени последнего запуска. 
+//По ссылке лежит бинарный файл. В нём записана дата создания и имя операционной системы, на которой он был создан (формат данных — строка).
 //
-//Для этого самостоятельно изучите документацию класса FileInfo и найдите метод, который позволяет добавлять строки в уже существующий файл. 
+//Скачайте файл и поместите его на рабочий стол.
+//
+//Напишите программу, которая считает из него данные и позволит вам ответить на следующие вопросы:
+//
+//1.Когда файл был создан?
+//
+//Формат ответа: DD.MM в hh:mm
+//
+//2. На какой операционной системе создан файл?
 
-class SourceCode
+class BinaryRead
 {
-    public static void Main()
+    const string settingsFileName = @"C:\\Users\User\Desktop\BinaryFile.bin";
+
+    static void Main()
     {
-        string pathFile = @"C:\Users\User\source\repos\draft\draft\Program.cs";
+        ReadValues();
+    }
 
-        if (!File.Exists(pathFile))
+    static void ReadValues()
+    {
+        //float FloatValue;
+        string StringValue;
+        //int IntValue;
+        //bool BooleanValue;
+
+        if (File.Exists(settingsFileName))
         {
-            string pathFile2 = @"C:\Users\User\source\repos\draft\draft\Program2.cs";
-
-            using (StreamWriter sw = File.CreateText(pathFile2))
+            using (BinaryReader Br = new BinaryReader(File.Open(settingsFileName, FileMode.Open)))
             {
-                sw.WriteLine("using System;");
-                sw.WriteLine("class SourceCode2");
-                sw.WriteLine("{}");
+                //FloatValue = Br.ReadSingle();
+                StringValue = Br.ReadString();
+                //IntValue = Br.ReadInt32();
+                //BooleanValue = Br.ReadBoolean();
             }
-        }
 
-        using (StreamReader sr = File.OpenText(pathFile))
-        {
-            string str = "";
-
-            while ((str = sr.ReadLine()) != null)
-            {
-                Console.WriteLine(str);
-            }
-            Console.WriteLine($"Время запуска {DateTime.Now}");
+            Console.WriteLine("Из файла считано:");
+            //Console.WriteLine("Дробь: " + FloatValue);
+            Console.WriteLine("Строка: " + StringValue);
+            //Console.WriteLine("Целое: " + IntValue);
+            //Console.WriteLine("Булево значение " + BooleanValue);
         }
     }
 }
