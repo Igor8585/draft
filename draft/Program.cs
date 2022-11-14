@@ -1,55 +1,36 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
+//Доработайте его и сериализуйте в бинарный формат.
 
-//Запишите в файл из предыдущего задания информацию о доступе к нему с вашей машины. 
-//
-//Пример вывода, который должен получиться: 
-//
-//Файл изменен 02.11 14:53 на компьютере Windows 11
-
-class BinaryRead
+[Serializable]
+class Contact
 {
-    const string settingsFileName = @"C:\\Users\User\Desktop\BinaryFile.bin";
+       public string Name { get; set; }
+       public long PhoneNumber { get; set; }
+       public string Email { get; set; }
+       
+       public Contact(string name, long phoneNumber, string email)
+       {
+           Name = name;
+           PhoneNumber = phoneNumber;
+           Email = email;
+       }
+}
 
+class Program
+{
     static void Main()
     {
-        ReadValues();
-        WriteValues();
-    }
+        var person = new Contact("Peter",9257345579,"mail@mail.ru");
 
-    static void WriteValues()
-    {
-        using (BinaryWriter Bw = new BinaryWriter(File.Open(settingsFileName, FileMode.Open)))
+        BinaryFormatter formater = new BinaryFormatter();
+
+        using (var fs = new FileStream(@"C:\\Users\User\Desktop\reter.dat", FileMode.OpenOrCreate))
         {
-            Bw.Write(@"Файл изменен 02.11 14:53 на компьютере Windows 11");
-            //Bw.Write(@"на компьютере Windows 11");
-        }
-
-    }
-
-    static void ReadValues()
-    {
-        //float FloatValue;
-        string StringValue;
-        //int IntValue;
-        //bool BooleanValue;
-    
-        if (File.Exists(settingsFileName))
-        {
-            using (BinaryReader Br = new BinaryReader(File.Open(settingsFileName, FileMode.Open)))
-            {
-                //FloatValue = Br.ReadSingle();
-                StringValue = Br.ReadString();
-                //IntValue = Br.ReadInt32();
-                //BooleanValue = Br.ReadBoolean();
-            }
-    
-            Console.WriteLine("Из файла считано:");
-            //Console.WriteLine("Дробь: " + FloatValue);
-            Console.WriteLine("Строка: " + StringValue);
-            //Console.WriteLine("Целое: " + IntValue);
-            //Console.WriteLine("Булево значение " + BooleanValue);
+            formater.Serialize(fs, person);
         }
     }
+
 }
