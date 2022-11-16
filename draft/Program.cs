@@ -2,26 +2,23 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-//Создайте консольное решение, в котором реализуйте конструкцию Try/Catch/Finally для обработки исключения RankException. 
-//    В случае исключения отобразите в консоль тип исключения (через метод GetType()).
+//Создайте консольное приложение, в котором есть функция, принимающая на вход два числа int, и возвращающая результат int вычитания второго числа из первого. 
+//Вызовите эту функцию в классе Main при помощи делегата и отобразите результат в консольном сообщении.
 
 class Draft
 {
-    static void Main()
+  public delegate int SubtractionDelegate(int a, int b);
+  static void Main()
     {
-        try
-        {
-            throw new RankException("Ошибка!");
-        }
+        SubtractionDelegate subtractionDelegate = Subtraction;
 
-        catch(RankException exc)
-        {
-            Console.WriteLine(exc.GetType());
-        }
+        int result = subtractionDelegate.Invoke(4,50);
 
-        finally
-        {
-            Console.Read();
-        }
+        Console.WriteLine(result);
+    }
+
+    static int Subtraction(int value1, int value2)
+    {
+        return value2 - value1;
     }
 }
