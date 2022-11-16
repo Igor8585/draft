@@ -2,18 +2,26 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-//Создайте класс исключения Exception и переопределите его свойство Message, а также свойство HelpLink, добавив в него ссылку на внешний ресурс.
+//Создайте консольное решение, в котором реализуйте конструкцию Try/Catch/Finally для обработки исключения ArgumentOutOfRangeException. 
+//В случае исключения отобразите в консоль сообщение об ошибке.
 
 class Draft
 {
     static void Main()
     {
-        Exception exception = new Exception("Собственное исключение");
+        try
+        {
+            throw new ArgumentOutOfRangeException("Ошибка!");
+        }
 
-        exception.Data.Add("Дата создания исключения : ", DateTime.Now);
+        catch(ArgumentOutOfRangeException exc)
+        {
+            Console.WriteLine(exc.Message);
+        }
 
-        exception.HelpLink = "www.google.ru";
-
-        //exception.Message.("");
+        finally
+        {
+            Console.Read();
+        }
     }
 }
