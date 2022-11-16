@@ -2,8 +2,8 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-//Создайте консольное решение, в котором реализуйте конструкцию Try/Catch/Finally для обработки исключения ArgumentOutOfRangeException. 
-//В случае исключения отобразите в консоль сообщение об ошибке.
+//Создайте консольное решение, в котором реализуйте конструкцию Try/Catch/Finally для обработки исключения RankException. 
+//    В случае исключения отобразите в консоль тип исключения (через метод GetType()).
 
 class Draft
 {
@@ -11,12 +11,12 @@ class Draft
     {
         try
         {
-            throw new ArgumentOutOfRangeException("Ошибка!");
+            throw new RankException("Ошибка!");
         }
 
-        catch(ArgumentOutOfRangeException exc)
+        catch(RankException exc)
         {
-            Console.WriteLine(exc.Message);
+            Console.WriteLine(exc.GetType());
         }
 
         finally
