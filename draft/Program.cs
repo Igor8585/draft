@@ -2,23 +2,28 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-//Создайте консольное приложение, в котором есть функция, принимающая на вход два числа int, и возвращающая результат int вычитания второго числа из первого. 
-//Вызовите эту функцию в классе Main при помощи делегата и отобразите результат в консольном сообщении.
-
+//Реализуйте консольное приложение, в котором существует две функции: первая функция вычитает второе число из первого и отображает результат в консольном сообщении, 
+//вторая функция складывает два числа и отображает результат в консоли. Реализуйте вызов этих двух функций через многоадресный делегат.
 class Draft
 {
-  public delegate int SubtractionDelegate(int a, int b);
+  public delegate void SubtractionDelegate(int a, int b);
   static void Main()
     {
         SubtractionDelegate subtractionDelegate = Subtraction;
 
-        int result = subtractionDelegate.Invoke(4,50);
+        subtractionDelegate = subtractionDelegate + Addition;
 
-        Console.WriteLine(result);
+        subtractionDelegate.Invoke(30,40);
+
     }
 
-    static int Subtraction(int value1, int value2)
+    static void Subtraction(int value1, int value2)
     {
-        return value2 - value1;
+         Console.WriteLine(value2 - value1);
+    }
+
+    static void Addition(int value1, int value2)
+    {
+        Console.WriteLine(value2 + value1);
     }
 }
