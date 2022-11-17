@@ -2,28 +2,30 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-//Используя консольное решение из задачи 9.3.12, реализуйте лямбда-оператор во время вызова анонимного метода.
+//Используя консольное решение из задачи 9.3.13, реализуйте лямбда-оператор во время вызова анонимного метода.
 
 namespace DelegatePractices
 {
     class Program
     {
-        delegate void ShowMessageDelegate(string _message);
+        delegate int RandomNumberDelegate();
         static void Main(string[] args)
         {
-            //ShowMessageDelegate showMessageDelegate = ShowMessage;
-            //showMessageDelegate.Invoke("Hello World!");
+            //RandomNumberDelegate randomNumberDelegate = RandomNumber;
+            //int result = randomNumberDelegate.Invoke();
+            //Console.WriteLine(result);
             //Console.Read();
 
-            //string hw = "Hello World!";
-            ShowMessageDelegate smd = x => Console.WriteLine(x);
+            RandomNumberDelegate rnd = () => new Random().Next(0, 100);
 
-            smd.Invoke("Hello World");
+            int result = rnd();
+
+            Console.WriteLine(result);
         }
 
-        static void ShowMessage(string _message)
+        static int RandomNumber()
         {
-            Console.WriteLine(_message);
+            return new Random().Next(0, 100);
         }
     }
 }
