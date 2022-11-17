@@ -16,7 +16,7 @@ namespace DelegatePractices
             //Console.WriteLine(result);
             //Console.Read();
 
-            RandomNumberDelegate rnd = () => new Random().Next(0, 100);
+            RandomNumberDelegate rnd = () => { return new Random().Next(0, 100)};
 
             int result = rnd();
 
