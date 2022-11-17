@@ -2,34 +2,28 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-//Существует консольное решение, которое выводит случайное целое число в диапазоне от 0 до 100 и отображает результат в консольное сообщение:
-//Реализуйте в данном решении анонимный метод, не сломав логику приложения.
+//Используя консольное решение из задачи 9.3.12, реализуйте лямбда-оператор во время вызова анонимного метода.
 
 namespace DelegatePractices
 {
     class Program
     {
-        delegate int RandomNumberDelegate();
+        delegate void ShowMessageDelegate(string _message);
         static void Main(string[] args)
         {
-            //RandomNumberDelegate randomNumberDelegate = RandomNumber;
-            //int result = randomNumberDelegate.Invoke();
-            //Console.WriteLine(result);
+            //ShowMessageDelegate showMessageDelegate = ShowMessage;
+            //showMessageDelegate.Invoke("Hello World!");
             //Console.Read();
 
-            RandomNumberDelegate rnd = delegate ()
-            {
-                return new Random().Next(0, 100);
-            };
+            //string hw = "Hello World!";
+            ShowMessageDelegate smd = x => Console.WriteLine(x);
 
-            int result = rnd.Invoke();
-
-            Console.WriteLine(result);
+            smd.Invoke("Hello World");
         }
 
-        static int RandomNumber()
+        static void ShowMessage(string _message)
         {
-            return new Random().Next(0, 100);
+            Console.WriteLine(_message);
         }
     }
 }
