@@ -2,28 +2,42 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-//Реализуйте консольное приложение, в котором существует две функции: первая функция вычитает второе число из первого и отображает результат в консольном сообщении, 
-//вторая функция складывает два числа и отображает результат в консоли. Реализуйте вызов этих двух функций через многоадресный делегат.
-class Draft
+//Используя консольное решение из предыдущей задачи 9.3.7, реализуйте применение шаблонных делегатов, описанных выше.
+public class Program
 {
-  public delegate void SubtractionDelegate(int a, int b);
-  static void Main()
+    //delegate void ShowMessageDelegate();
+    //delegate int SumDelegate(int a, int b, int c);
+    //delegate bool CheckLengthDelegate(string row);
+
+    static void Main(string[] args)
     {
-        SubtractionDelegate subtractionDelegate = Subtraction;
+        Action showMessageDelegate = ShowMessage;
+        showMessageDelegate.Invoke();
 
-        subtractionDelegate = subtractionDelegate + Addition;
+        Func<int,int,int,int> sumDelegate = Sum;
+        int result = sumDelegate.Invoke(1, 30, 120);
+        Console.WriteLine(result);
 
-        subtractionDelegate.Invoke(30,40);
+        Predicate<string> checkLengthDelegate = CheckLength;
+        bool status = checkLengthDelegate.Invoke("skill_factory");
+        Console.WriteLine(status);
 
+        Console.ReadLine();
     }
 
-    static void Subtraction(int value1, int value2)
+    static void ShowMessage()
     {
-         Console.WriteLine(value2 - value1);
+        Console.WriteLine("Hello World!");
     }
 
-    static void Addition(int value1, int value2)
+    static int Sum(int a, int b, int c)
     {
-        Console.WriteLine(value2 + value1);
+        return a + b + c;
+    }
+
+    static bool CheckLength(string _row)
+    {
+        if (_row.Length > 3) return true;
+        return false;
     }
 }
