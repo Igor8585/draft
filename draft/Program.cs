@@ -2,42 +2,32 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-//Используя консольное решение из предыдущей задачи 9.3.7, реализуйте применение шаблонных делегатов, описанных выше.
-public class Program
+//Существует следующее консольное решение, которое отображает сообщение Hello World в консольном сообщении:
+//Реализуйте в данном решении анонимный метод, не сломав логику приложения.
+
+namespace DelegatePractices
 {
-    //delegate void ShowMessageDelegate();
-    //delegate int SumDelegate(int a, int b, int c);
-    //delegate bool CheckLengthDelegate(string row);
-
-    static void Main(string[] args)
+    class Program
     {
-        Action showMessageDelegate = ShowMessage;
-        showMessageDelegate.Invoke();
+        delegate void ShowMessageDelegate(string _message);
+        static void Main(string[] args)
+        {
+            //ShowMessageDelegate showMessageDelegate = ShowMessage;
+            //showMessageDelegate.Invoke("Hello World!");
+            //Console.Read();
 
-        Func<int,int,int,int> sumDelegate = Sum;
-        int result = sumDelegate.Invoke(1, 30, 120);
-        Console.WriteLine(result);
+            //string hw = "Hello World!";
+            ShowMessageDelegate smd = delegate (string hw)
+            {
+                Console.WriteLine(hw);
+            };
 
-        Predicate<string> checkLengthDelegate = CheckLength;
-        bool status = checkLengthDelegate.Invoke("skill_factory");
-        Console.WriteLine(status);
+            smd.Invoke("Hello World!");
+        }
 
-        Console.ReadLine();
-    }
-
-    static void ShowMessage()
-    {
-        Console.WriteLine("Hello World!");
-    }
-
-    static int Sum(int a, int b, int c)
-    {
-        return a + b + c;
-    }
-
-    static bool CheckLength(string _row)
-    {
-        if (_row.Length > 3) return true;
-        return false;
+        static void ShowMessage(string _message)
+        {
+            Console.WriteLine(_message);
+        }
     }
 }
