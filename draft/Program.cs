@@ -2,32 +2,34 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-//Существует следующее консольное решение, которое отображает сообщение Hello World в консольном сообщении:
+//Существует консольное решение, которое выводит случайное целое число в диапазоне от 0 до 100 и отображает результат в консольное сообщение:
 //Реализуйте в данном решении анонимный метод, не сломав логику приложения.
 
 namespace DelegatePractices
 {
     class Program
     {
-        delegate void ShowMessageDelegate(string _message);
+        delegate int RandomNumberDelegate();
         static void Main(string[] args)
         {
-            //ShowMessageDelegate showMessageDelegate = ShowMessage;
-            //showMessageDelegate.Invoke("Hello World!");
+            //RandomNumberDelegate randomNumberDelegate = RandomNumber;
+            //int result = randomNumberDelegate.Invoke();
+            //Console.WriteLine(result);
             //Console.Read();
 
-            //string hw = "Hello World!";
-            ShowMessageDelegate smd = delegate (string hw)
+            RandomNumberDelegate rnd = delegate ()
             {
-                Console.WriteLine(hw);
+                return new Random().Next(0, 100);
             };
 
-            smd.Invoke("Hello World!");
+            int result = rnd.Invoke();
+
+            Console.WriteLine(result);
         }
 
-        static void ShowMessage(string _message)
+        static int RandomNumber()
         {
-            Console.WriteLine(_message);
+            return new Random().Next(0, 100);
         }
     }
 }
