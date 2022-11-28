@@ -2,16 +2,16 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-//Используя теоретический материал из данного юнита, постарайтесь самостоятельно реализовать явную реализацию следующего интерфейса:
+//Реализуйте явно следующий интерфейс и вызовите его метод в классе Program.
 
-public interface IWriter
+public interface IWorker
 {
-    void Write();
+    public void Build();
 }
 
-public class Writen : IWriter
+public class Worker : IWorker
 {
-     void IWriter.Write()
+     void IWorker.Build()
     {
 
     }
@@ -21,8 +21,8 @@ class Program
 {
     static void Main()
     {
-        Writen writen = new Writen();
-
-        ((IWriter) writen).Write();
+        var worker = new Worker();
+        ((IWorker)worker).Build();
     }
+
 }
