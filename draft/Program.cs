@@ -2,30 +2,27 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-//Используя консольное решение из задачи 9.3.13, реализуйте лямбда-оператор во время вызова анонимного метода.
+//Используя теоретический материал из данного юнита, постарайтесь самостоятельно реализовать явную реализацию следующего интерфейса:
 
-namespace DelegatePractices
+public interface IWriter
 {
-    class Program
+    void Write();
+}
+
+public class Writen : IWriter
+{
+     void IWriter.Write()
     {
-        delegate int RandomNumberDelegate();
-        static void Main(string[] args)
-        {
-            //RandomNumberDelegate randomNumberDelegate = RandomNumber;
-            //int result = randomNumberDelegate.Invoke();
-            //Console.WriteLine(result);
-            //Console.Read();
 
-            RandomNumberDelegate rnd = () => { return new Random().Next(0, 100)};
+    }
+}
 
-            int result = rnd();
+class Program
+{
+    static void Main()
+    {
+        Writen writen = new Writen();
 
-            Console.WriteLine(result);
-        }
-
-        static int RandomNumber()
-        {
-            return new Random().Next(0, 100);
-        }
+        ((IWriter) writen).Write();
     }
 }
