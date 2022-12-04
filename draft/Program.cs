@@ -2,37 +2,33 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-//Даны три интерфейса:
-//Создайте класс Entity и выполните в нём множественную неявную реализацию данных интерфейсов.
+//Даны два интерфейса:
+//Создайте класс ElectronicBook и выполните в нём множественную явную реализацию данных интерфейсов.
 
-public interface ICreatable
+public interface IBook
 {
-    void Create();
+    void Read();
 }
 
-public interface IDeletable
+public interface IDevice
 {
-    void Delete();
+    void TurnOn();
+    void TurnOff();
 }
 
-public interface IUpdatable
+class ElectronicBook : IBook, IDevice
 {
-    void Update();
-}
-
-class Entity : ICreatable, IDeletable, IUpdatable
-{
-    public void Create()
+    void IBook.Read()
     {
         throw new NotImplementedException();
     }
 
-    public void Delete()
+    void IDevice.TurnOff()
     {
         throw new NotImplementedException();
     }
 
-    public void Update()
+    void IDevice.TurnOn()
     {
         throw new NotImplementedException();
     }
