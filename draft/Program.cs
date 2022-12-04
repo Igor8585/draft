@@ -2,27 +2,28 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-//Реализуйте явно следующий интерфейс и вызовите его метод в классе Program.
+//Создайте класс FileManager и выполните в нём множественную реализацию интерфейсов, указанных в примере выше.
 
-public interface IWorker
+public interface IFile
 {
-    public void Build();
+    void ReadFile();
 }
 
-public class Worker : IWorker
+public interface IBinaryFile
 {
-     void IWorker.Build()
-    {
-
-    }
+    void ReadFile();
+    void OpenBinaryFile();
 }
 
-class Program
+class FileManager : IFile, IBinaryFile
 {
-    static void Main()
+    public void OpenBinaryFile()
     {
-        var worker = new Worker();
-        ((IWorker)worker).Build();
+        throw new NotImplementedException();
     }
 
+    public void ReadFile()
+    {
+        throw new NotImplementedException();
+    }
 }
