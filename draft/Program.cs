@@ -2,27 +2,37 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-//Создайте класс FileManager и выполните в нём множественную реализацию интерфейсов, указанных в примере выше.
+//Даны три интерфейса:
+//Создайте класс Entity и выполните в нём множественную неявную реализацию данных интерфейсов.
 
-public interface IFile
+public interface ICreatable
 {
-    void ReadFile();
+    void Create();
 }
 
-public interface IBinaryFile
+public interface IDeletable
 {
-    void ReadFile();
-    void OpenBinaryFile();
+    void Delete();
 }
 
-class FileManager : IFile, IBinaryFile
+public interface IUpdatable
 {
-    public void OpenBinaryFile()
+    void Update();
+}
+
+class Entity : ICreatable, IDeletable, IUpdatable
+{
+    public void Create()
     {
         throw new NotImplementedException();
     }
 
-    public void ReadFile()
+    public void Delete()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Update()
     {
         throw new NotImplementedException();
     }
