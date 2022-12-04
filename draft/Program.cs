@@ -2,34 +2,43 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-//Даны два интерфейса:
-//Создайте класс ElectronicBook и выполните в нём множественную явную реализацию данных интерфейсов.
+//Реализуйте данный интерфейс в классе UserService, и продемонстрируйте контравариацию интерфейса в базовом классе Program.
 
-public interface IBook
+public class User
 {
-    void Read();
+
 }
 
-public interface IDevice
+public class Account : User
 {
-    void TurnOn();
-    void TurnOff();
+
 }
 
-class ElectronicBook : IBook, IDevice
+public interface IUpdater<in T>
 {
-    void IBook.Read()
+    void Update(T entity);
+}
+
+class UserService : IUpdater<User>
+{
+    public void Update(User entity)
     {
         throw new NotImplementedException();
     }
+}
 
-    void IDevice.TurnOff()
+class Program
+{
+    static void Main()
     {
-        throw new NotImplementedException();
-    }
+        var user = new User();
+        var account = new Account();
 
-    void IDevice.TurnOn()
-    {
-        throw new NotImplementedException();
+
+        IUpdater<Account> updater = new UserService();
+       // IUpdater<User> updater1 = new UserService();
+
+        var userService = new UserService();
+        userService.Update(user);
     }
 }
